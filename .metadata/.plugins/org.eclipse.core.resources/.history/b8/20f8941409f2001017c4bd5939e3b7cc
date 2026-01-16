@@ -1,0 +1,5 @@
+package com.ElorServ.ElorServ.model;
+
+public class User {
+
+}

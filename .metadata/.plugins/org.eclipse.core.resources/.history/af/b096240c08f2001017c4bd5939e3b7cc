@@ -1,0 +1,16 @@
+spring.application.name=ElorServ
+
+
+server.port=8080
+
+# Conexión a BD (Si estás en la misma MV usa localhost, si no, la IP de la MV)
+spring.datasource.url=jdbc:mysql://localhost:3306/eduelorrieta?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+spring.datasource.username=root
+# Pon la contraseña que pusiste al instalar MySQL (en el SQL no venía, tú sabrás cual es)
+spring.datasource.password=tu_password_root
+
+# Configuración JPA/Hibernate
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=none
+# Usamos 'none' o 'validate' porque la tabla YA EXISTE. No queremos que Spring la borre.
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect

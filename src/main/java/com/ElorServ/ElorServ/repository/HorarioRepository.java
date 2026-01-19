@@ -10,4 +10,6 @@ public interface HorarioRepository extends JpaRepository<Horario, Integer> {
 
 	//busca los  horarios por el ID del profe
 	List<Horario> findByProfesorId(int profesorId);
+	
+	List<Horario> findByModuloCicloId(int cicloId);
 }

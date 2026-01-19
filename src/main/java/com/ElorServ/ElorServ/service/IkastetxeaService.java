@@ -48,7 +48,7 @@ public class IkastetxeaService {
 	}
 		
 	
-	public List<IkastetxeaDTO> lortuGuztiakk() {
+	public List<IkastetxeaDTO> lortuGuztiak() {
 		return ikastetxeaZerrenda;	
 	}
 }

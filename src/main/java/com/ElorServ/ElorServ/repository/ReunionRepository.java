@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ReunionRepository extends JpaRepository<Reunion, Integer> {
     // Buscar todas las reuniones de un profesor concreto
-    List<Reunion> findByProfesorId(Long profesorId);
+    List<Reunion> findByProfesorId(int profesorId);
+    List<Reunion> findByAlumnoId(int alumnoId);
 }

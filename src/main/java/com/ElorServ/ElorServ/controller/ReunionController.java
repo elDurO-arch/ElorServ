@@ -21,7 +21,7 @@ public class ReunionController {
     
     // PUT http://IP:8080/api/reuniones/aceptar/1 (Acepta la reunión con ID 1)
     @PutMapping("/aceptar/{id}")
-    public Reunion aceptarReunion(@PathVariable Long id) {
+    public Reunion aceptarReunion(@PathVariable Integer id) {
         Reunion r = reunionRepository.findById(id).orElseThrow();
         r.setEstado("aceptada");
         return reunionRepository.save(r);

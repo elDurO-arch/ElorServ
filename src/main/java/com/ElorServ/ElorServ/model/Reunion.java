@@ -11,7 +11,7 @@ public class Reunion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reunion") // IMPORTANTE: En tu SQL la PK se llama id_reunion
-    private Long id;
+    private int id;
 
     private String estado; // 'pendiente', 'aceptada', etc.
     private String titulo;

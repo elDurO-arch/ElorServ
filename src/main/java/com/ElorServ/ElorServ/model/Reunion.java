@@ -10,10 +10,10 @@ import java.util.Date;
 public class Reunion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reunion") // IMPORTANTE: En tu SQL la PK se llama id_reunion
+    @Column(name = "id_reunion") 
     private int id;
 
-    private String estado; // 'pendiente', 'aceptada', etc.
+    private String estado;
     private String titulo;
     private String asunto;
     private String aula;

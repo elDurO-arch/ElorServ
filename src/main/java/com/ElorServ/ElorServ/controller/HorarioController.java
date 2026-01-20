@@ -16,7 +16,7 @@ import com.ElorServ.ElorServ.repository.HorarioRepository;
 import com.ElorServ.ElorServ.repository.MatriculacionRepository;
 
 @RestController
-@RequestMapping("/API/horarios")
+@RequestMapping("/api/horarios")
 public class HorarioController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class HorarioController {
  // GET http://localhost:8080/api/horarios/alumno/10
     @GetMapping("/alumno/{id}")
     public List<Horario> getHorarioAlumno(@PathVariable Integer id) {
-        // A) Buscamos la matrícula del alumno para saber su ciclo
+        //Buscamos la matrícula del alumno para saber su ciclo
         List<Matriculacion> matriculas = matriculacionRepository.findByAlumnoId(id);
         
         if (matriculas.isEmpty()) {
@@ -44,7 +44,7 @@ public class HorarioController {
         // Asumimos que el alumno está en un solo ciclo (cogemos el primero)
         Ciclo cicloDelAlumno = matriculas.get(0).getCiclo();
         
-        // B) Buscamos el horario de ese ciclo completo
+        //Buscamos el horario de ese ciclo completo
         return horarioRepository.findByModuloCicloId(cicloDelAlumno.getId());
     }
 }

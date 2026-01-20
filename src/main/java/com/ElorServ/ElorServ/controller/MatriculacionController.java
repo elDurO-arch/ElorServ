@@ -25,7 +25,7 @@ public class MatriculacionController {
         return matriculacionRepository.findByAlumnoId(id);
     }
 
-    //  ver todos los alumnos de un ciclo (Para que el profe pase lista)
+    //ver todos los alumnos de un ciclo 
     // GET http://localhost:8080/api/matriculaciones/ciclo/1
     @GetMapping("/ciclo/{id}")
     public List<Matriculacion> getAlumnosPorCiclo(@PathVariable int id) {

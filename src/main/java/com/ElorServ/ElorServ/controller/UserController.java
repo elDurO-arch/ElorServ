@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users") //  URL base
+@RequestMapping("/api/users") 
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    // al entrar a la web  ejecutara esto
+    //al entrar a la web  ejecutara esto
     @GetMapping
     public List<User> obtenerTodos() {
         return userRepository.findAll();

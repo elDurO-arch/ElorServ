@@ -1,4 +1,4 @@
-package com.ElorServ.ElorServ.model; // Fíjate que coincida con tu paquete
+package com.ElorServ.ElorServ.model; 
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Data // Esto crea los Getters y Setters automáticamente (gracias a Lombok)
-@Table(name = "users") // Nombre exacto de la tabla en tu base de datos SQL
+@Data //esto crea los Getters y Setters automáticamente (Lombok)
+@Table(name = "users") 
 public class User {
 
     @Id
@@ -22,8 +22,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
-    private String password; // En el reto viaja cifrada, pero en BD está texto plano según  SQL.
-
+    private String password; 
     private String nombre;
     private String apellidos;
     private String dni;
@@ -31,15 +30,15 @@ public class User {
     private String direccion;
     private String telefono1;
     private String telefono2;
-    private String argazkia_url; // Foto de perfil
+    private String argazkia_url;
 
-    // Relación con Tipos (Profesor, Alumno...)
+    //Relación con Tipo
     @ManyToOne
     @JoinColumn(name = "tipo_id")
     private Tipo tipo; 
     
 
-    // JsonIgnore para que al pedir el usuario no se descargue lista infinita
+    //JsonIgnore --> para que al pedir el usuario no se descargue lista infinita
     @OneToMany(mappedBy = "profesor")
     @JsonIgnore
     private List<Reunion> reunionesComoProfesor;

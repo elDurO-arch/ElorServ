@@ -14,7 +14,7 @@ public class ReunionController {
     private ReunionRepository reunionRepository;
 
     //estp es para listar por profesor
-    // GET http://IP:8080/api/reuniones/profesor/3  (Saca las reuniones del profe con ID 3)
+    // GET http://IP:8080/api/reuniones/profesor/3 <-- (Saca las reuniones del profe con ID 3)
     @GetMapping("/profesor/{id}")
     public List<Reunion> getReunionesPorProfesor(@PathVariable int id) {
         return reunionRepository.findByProfesorId(id);
@@ -40,7 +40,7 @@ public class ReunionController {
     
     
     //Aceptar Reunion
-    // PUT http://IP:8080/api/reuniones/aceptar/1 (Acepta la reunión con ID 1)
+    // PUT http://IP:8080/api/reuniones/aceptar/1 <-- (Acepta la reunión con ID 1)
     @PutMapping("/actualizar")
     public Reunion actualizarReunion(@RequestBody Reunion reunion) {
        

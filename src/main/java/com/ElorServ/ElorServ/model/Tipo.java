@@ -11,5 +11,5 @@ public class Tipo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name; // 'profesor', 'alumno', etc.
+    private String name; 
 }

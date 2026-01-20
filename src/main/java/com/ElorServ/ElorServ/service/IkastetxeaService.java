@@ -13,6 +13,7 @@ import jakarta.annotation.PostConstruct;
 import com.ElorServ.ElorServ.model.IkastetxeaDTO;
 import com.ElorServ.ElorServ.model.IkastetxeakJSON;
 
+//para cargar los datos de los ikastetxeak desde un fichero JSON
 
 @Service
 public class IkastetxeaService {

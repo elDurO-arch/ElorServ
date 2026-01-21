@@ -9,3 +9,12 @@ public interface ReunionRepository extends JpaRepository<Reunion, Integer> {
     List<Reunion> findByProfesorId(int profesorId);
     List<Reunion> findByAlumnoId(int alumnoId);
 }
+
+
+// en --> List<Reunion> findByProfesorId(int profesorId); Spring Data JPA
+//genera la consulta automáticamente, traduciendo el nombre del método en una consulta SQL
+//si la consulta fuera muy compleja, se podría hacer de forma manual con @Query 
+
+//asi seria la consulta manual HQL si hiciera falta
+//@Query("SELECT r FROM Reunion r WHERE r.profesor.id = :idProfesor")
+//List<Reunion> buscarReunionesDeProfeManual(@Param("idProfesor") int id);

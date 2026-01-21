@@ -42,4 +42,7 @@ public class User {
     @OneToMany(mappedBy = "profesor")
     @JsonIgnore
     private List<Reunion> reunionesComoProfesor;
+    @OneToMany(mappedBy = "profesor")
+    @JsonIgnore
+    private List<Reunion> reunionesComoAlumno;
 }

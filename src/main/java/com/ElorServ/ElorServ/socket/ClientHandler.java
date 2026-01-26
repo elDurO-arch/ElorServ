@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Map;
 
+import com.ElorServ.ElorServ.Security.RSAService;
 import com.ElorServ.ElorServ.model.SocketData;
 import com.ElorServ.ElorServ.model.User;
 import com.ElorServ.ElorServ.repository.UserRepository;
@@ -16,11 +17,12 @@ public class ClientHandler extends Thread {
 	private Socket clientSocket;
 	private UserRepository userRepository;
 	private Gson gson = new Gson();
+	private RSAService rsaService;
 	
-	
-	public ClientHandler(Socket socket, UserRepository userRepository) {
+	public ClientHandler(Socket socket, UserRepository userRepository ,RSAService rsaService) {
 		this.clientSocket = socket;
 		this.userRepository = userRepository;
+		this.rsaService = new RSAService();
 	}
 	
 	@Override
@@ -32,8 +34,12 @@ public class ClientHandler extends Thread {
 			
 			
 			
-			//aviso de conexion
-			out.println("Kaixo, ElorServ Socket zerbitzaria prest.");
+			
+			
+			//AL CONECTARSE: se envia la clave pública al cliente
+            String publicKey = rsaService.getPublicKeyAsString();
+            SocketData keyMsg = new SocketData("PUBLIC_KEY", publicKey);
+            out.println(gson.toJson(keyMsg));
 			
 			String inputLine;
 			
@@ -90,11 +96,17 @@ public class ClientHandler extends Thread {
 		try {
 			Map<String, String> credenciales = (Map<String, String>) data;
 			String username = credenciales.get("username");
-			String password = credenciales.get("password");
+			String passwordCifrada = credenciales.get("password");
 			
-			User usuarioEncontrado = userRepository.findByUsernameAndPassword(username, password).orElse(null);
+			//descifra la contraseña que viene encriptada desde el cliente
+            String passwordPlana = rsaService.decrypt(passwordCifrada);
 			
-			if (usuarioEncontrado != null && usuarioEncontrado.getPassword().equals(password)) {
+            System.out.println("Intento de login: " + username);
+            // System.out.println("Pass descifrada: " + passwordPlana); // Solo para debug
+            
+			User usuarioEncontrado = userRepository.findByUsernameAndPassword(username, passwordPlana).orElse(null);
+			
+			if (usuarioEncontrado != null ) {
                 // Login correcto, Devolvemos los datos del usuario (sin el password por seguridad)
                 usuarioEncontrado.setPassword(null); 
                 usuarioEncontrado.setReunionesComoProfesor(null); 

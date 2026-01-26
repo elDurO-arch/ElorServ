@@ -24,7 +24,7 @@ public class AuthController {
     	if (userOpt.isPresent()) {
             User usuarioEncontrado = userOpt.get();
 
-            // --- limpieza de seguridad ---
+            // --- l impieza de seguridad ---
             usuarioEncontrado.setPassword(null);
             usuarioEncontrado.setReunionesComoProfesor(null);
             

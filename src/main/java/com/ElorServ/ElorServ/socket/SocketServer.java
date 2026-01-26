@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.ElorServ.ElorServ.Security.RSAService;
 import com.ElorServ.ElorServ.repository.UserRepository;
 
 @Component
@@ -31,8 +32,11 @@ public class SocketServer implements CommandLineRunner{
 					//se queda congelado el server esperando conexiones
 					Socket clientSocket = serverSocket.accept();
 					
+					RSAService rsaService = new RSAService();
+					
 					//cuando llega una conexion, se crea un nuevo hilo para manejarla
-					new ClientHandler(clientSocket, userRepository).start();
+					new ClientHandler(clientSocket, userRepository, rsaService).start();
+				
 				}
 			} catch (IOException e) {
 				System.out.println("Errorea socket zerbitzaria abiaraztean: " + e.getMessage() + ", Portuan: "+ PORT);

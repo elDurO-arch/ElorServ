@@ -31,5 +31,10 @@ public class MatriculacionController {
     public List<Matriculacion> getAlumnosPorCiclo(@PathVariable int id) {
         return matriculacionRepository.findByCicloId(id);
     }
+    
+    @GetMapping("/profesor-alumnos/{id}")
+    public List<Matriculacion> getAlumnosPorProfesor(@PathVariable int id) {
+		return matriculacionRepository.findMatriculasByProfesorId(id);
+	}
 
 }

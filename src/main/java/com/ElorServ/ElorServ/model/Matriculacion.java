@@ -15,7 +15,7 @@ public class Matriculacion {
 	
 	//Alumno matriculado
 	@ManyToOne
-	@JoinColumn(name = "alumno_id")
+	@JoinColumn(name = "alum_id")
 	private User alumno;
 	
 	//Ciclo en la que esta matriculado

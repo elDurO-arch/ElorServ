@@ -2,11 +2,15 @@ package com.ElorServ.ElorServ.repository;
 
 import com.ElorServ.ElorServ.model.Reunion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface ReunionRepository extends JpaRepository<Reunion, Integer> {
     // Buscar todas las reuniones de un profesor concreto
-    List<Reunion> findByProfesorId(int profesorId);
+	@Query("SELECT r FROM Reunion r JOIN FETCH r.alumno WHERE r.profesor.id = :profesorId")
+    List<Reunion> findByProfesorId(@Param("profesorId") int profesorId);
     List<Reunion> findByAlumnoId(int alumnoId);
 }
 

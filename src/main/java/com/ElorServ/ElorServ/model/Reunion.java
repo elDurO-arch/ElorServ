@@ -25,7 +25,7 @@ public class Reunion {
     private User profesor;
 
     // Relación con el Alumno
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "alumno_id")
     private User alumno;
 }

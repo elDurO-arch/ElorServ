@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.ElorServ.ElorServ.Security.RSAService;
+import com.ElorServ.ElorServ.repository.HorarioRepository;
+import com.ElorServ.ElorServ.repository.MatriculacionRepository;
+import com.ElorServ.ElorServ.repository.ReunionRepository;
 import com.ElorServ.ElorServ.repository.UserRepository;
 
 @Component
@@ -18,6 +21,14 @@ public class SocketServer implements CommandLineRunner{
 	
 	@Autowired
 	private UserRepository userRepository; // Inyecta el repositorio para poder buscar ususarios
+	@Autowired
+	private HorarioRepository horarioRepository; 
+	@Autowired
+	private ReunionRepository reunionRepository;
+	@Autowired
+	private MatriculacionRepository matriculaRepository;
+
+	
 	
 	@Override
 	public void run(String... args)throws Exception{
@@ -35,7 +46,7 @@ public class SocketServer implements CommandLineRunner{
 					RSAService rsaService = new RSAService();
 					
 					//cuando llega una conexion, se crea un nuevo hilo para manejarla
-					new ClientHandler(clientSocket, userRepository, rsaService).start();
+					new ClientHandler(clientSocket, userRepository, horarioRepository, reunionRepository, matriculaRepository, rsaService).start();
 				
 				}
 			} catch (IOException e) {
